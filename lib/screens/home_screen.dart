@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () async {
               final response = await api.fetchWeatherData();
               print(response);
+              print(response);
             },
             child: const Text('Data'),
           ),
