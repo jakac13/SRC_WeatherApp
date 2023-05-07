@@ -1,8 +1,6 @@
 import 'package:http/http.dart' as http;
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 
 class WeatherApiService {
   Future<Map<String, dynamic>> fetchWeatherData() async {
