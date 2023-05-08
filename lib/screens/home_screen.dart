@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:weather_src/services/location_service.dart';
 import 'package:weather_src/utils/app_styles.dart';
 import 'package:weather_src/services/weather_api_service.dart';
 import 'package:geocoder_buddy/geocoder_buddy.dart';
@@ -12,24 +14,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<GBSearchData> searchItem = [];
-  Map<String, dynamic> details = {};
-  LatLng? latLng;
   WeatherApiService api = WeatherApiService();
-  GeocoderBuddy geocoderBuddy = GeocoderBuddy();
-
-  Future<LatLng> searchLocation(String query) async {
-    List<GBSearchData> data = await GeocoderBuddy.query(query);
-    LatLng? latLng;
-    if (data.isNotEmpty) {
-      GBSearchData firstResult = data.first;
-      latLng = LatLng(firstResult.lat, firstResult.lon);
-    }
-    setState(() {
-      searchItem = data;
-    });
-    return latLng ?? LatLng("0", "0");
-  }
+  LocationService location = LocationService();
+  LatLng latLng = LatLng("0", "0");
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           ElevatedButton(
             onPressed: () async {
-              latLng = await searchLocation('Ljubljana');
+              /* latLng = await location.searchLocation('Novo mesto'); */
+              latLng = await location.currentLocation();
               setState(() {});
             },
             child: const Text('Get data'),
           ),
-          Text(latLng!.latitude + ", " + latLng!.longitude)
+          Text(latLng.latitude + ", " + latLng.longitude),
         ],
       ),
     );
