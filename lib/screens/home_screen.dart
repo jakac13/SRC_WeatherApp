@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_src/models/weather_forecast_model.dart';
 import 'package:weather_src/services/location_service.dart';
 import 'package:weather_src/utils/app_styles.dart';
 import 'package:weather_src/services/weather_api_service.dart';
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Map<String, dynamic>? weatherData;
+  WeatherForecastModel? weatherData;
   WeatherApiService api = WeatherApiService();
   LocationService location = LocationService();
 
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: const Text('Get data'),
           ),
-          Text(weatherData.toString()),
+          Text(weatherData?.latitude.toString() ?? "Empty"),
         ],
       ),
     );
