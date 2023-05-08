@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:weather_src/models/lat_lng_model.dart';
 
 class WeatherApiService {
