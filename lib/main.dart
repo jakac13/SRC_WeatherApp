@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:weather_src/screens/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_src/viewmodels/weather_data_view_model.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (_) => WeatherDataViewModel(),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

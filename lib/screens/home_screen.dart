@@ -1,42 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:weather_src/models/weather_forecast_model.dart';
-import 'package:weather_src/services/location_service.dart';
 import 'package:weather_src/utils/app_styles.dart';
-import 'package:weather_src/services/weather_api_service.dart';
 import 'package:weather_src/viewmodels/weather_data_view_model.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  WeatherForecastModel? weatherData;
-  WeatherApiService api = WeatherApiService();
-  LocationService location = LocationService();
+  WeatherDataViewModel weatherViewModel = WeatherDataViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<WeatherDataViewModel>(context, listen: false)
+        .getWeatherDataCurrentLocation();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppTheme.dark,
-      body: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () async {
-              WeatherDataViewModel weatherViewModel = WeatherDataViewModel();
-              final data =
-                  await weatherViewModel.getWeatherDataSearchedCity("Miami");
-              setState(() {
-                weatherData = data;
-              });
-            },
-            child: const Text('Get data'),
+    final viewModel = Provider.of<WeatherDataViewModel>(context);
+
+    if (viewModel.loading == true) {
+      return const CircularProgressIndicator();
+    } else {
+      return Scaffold(
+        backgroundColor: AppTheme.dark,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  Provider.of<WeatherDataViewModel>(context, listen: false)
+                      .getWeatherDataSearchedCity("Miami");
+                  setState(() {});
+                },
+                child: const Text('Get data'),
+              ),
+              Text(
+                viewModel.weatherData?.latitude.toString() ?? "No data",
+                style: const TextStyle(color: Colors.white),
+              ),
+            ],
           ),
-          Text(weatherData?.latitude.toString() ?? "Empty"),
-        ],
-      ),
-    );
+        ),
+      );
+    }
   }
 }
