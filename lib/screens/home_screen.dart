@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_src/components/line_chart_component.dart';
 import 'package:weather_src/utils/app_styles.dart';
 import 'package:weather_src/viewmodels/weather_data_view_model.dart';
 import 'package:provider/provider.dart';
@@ -40,15 +41,21 @@ class _HomeScreenState extends State<HomeScreen> {
               ElevatedButton(
                 onPressed: () async {
                   Provider.of<WeatherDataViewModel>(context, listen: false)
-                      .getWeatherDataSearchedCity("Miami");
+                      .getWeatherDataSearchedCity("");
                   setState(() {});
                 },
                 child: const Text('Get data'),
               ),
               Text(
-                viewModel.weatherData?.latitude.toString() ?? "No data",
-                style: const TextStyle(color: Colors.white),
+                viewModel.weatherData?.currentWeather!.temperature.toString() ??
+                    "No data",
+                style: const TextStyle(color: AppTheme.white),
               ),
+              AspectRatio(
+                  aspectRatio: 4 / 1,
+                  child: LineChartComponent(
+                    WeatherForecastModel: viewModel.weatherData,
+                  )),
             ],
           ),
         ),

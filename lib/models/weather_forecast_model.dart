@@ -42,7 +42,7 @@ class WeatherForecastModel {
         : null;
     hourly = json['hourly'] != null ? Hourly.fromJson(json['hourly']) : null;
     dailyUnits = json['daily_units'] != null
-        ? DailyUnits.fromJson(json['daily_units'])
+        ? new DailyUnits.fromJson(json['daily_units'])
         : null;
     daily = json['daily'] != null ? Daily.fromJson(json['daily']) : null;
   }
@@ -78,7 +78,7 @@ class WeatherForecastModel {
 class CurrentWeather {
   double? temperature;
   double? windspeed;
-  int? winddirection;
+  double? winddirection;
   int? weathercode;
   int? isDay;
   String? time;
@@ -94,7 +94,7 @@ class CurrentWeather {
   CurrentWeather.fromJson(Map<String, dynamic> json) {
     temperature = json['temperature'].toDouble();
     windspeed = json['windspeed'].toDouble();
-    winddirection = json['winddirection'];
+    winddirection = json['winddirection'].toDouble();
     weathercode = json['weathercode'];
     isDay = json['is_day'];
     time = json['time'];

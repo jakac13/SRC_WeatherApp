@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:weather_src/models/weather_forecast_model.dart';
+import 'package:weather_src/utils/app_styles.dart';
 
 class LineChartComponent extends StatefulWidget {
   const LineChartComponent({super.key, required this.WeatherForecastModel});

@@ -20,6 +20,7 @@ class WeatherDataViewModel extends ChangeNotifier {
       weatherData = WeatherForecastModel.fromJson(data);
       notifyListeners();
     } catch (e) {
+      print(e);
       throw Exception();
     }
     loading = false;
