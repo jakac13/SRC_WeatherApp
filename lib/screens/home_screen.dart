@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:weather_src/components/line_chart_component.dart';
+import 'package:weather_src/components/search_component.dart';
+import 'package:weather_src/components/weather_forecast_component.dart';
 import 'package:weather_src/utils/app_styles.dart';
 import 'package:weather_src/viewmodels/weather_data_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:anim_search_bar/anim_search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -30,36 +33,29 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<WeatherDataViewModel>(context);
 
-    if (viewModel.loading == true) {
-      return const CircularProgressIndicator();
-    } else {
-      return Scaffold(
-        backgroundColor: AppTheme.dark,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              ElevatedButton(
-                onPressed: () async {
-                  Provider.of<WeatherDataViewModel>(context, listen: false)
-                      .getWeatherDataSearchedCity("");
-                  setState(() {});
-                },
-                child: const Text('Get data'),
-              ),
-              Text(
-                viewModel.weatherData?.currentWeather!.temperature.toString() ??
-                    "No data",
-                style: const TextStyle(color: AppTheme.white),
-              ),
-              AspectRatio(
-                  aspectRatio: 4 / 1,
-                  child: LineChartComponent(
-                    WeatherForecastModel: viewModel.weatherData,
-                  )),
-            ],
-          ),
+    return Scaffold(
+      backgroundColor: AppTheme.bright,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const SearchComponent(),
+            Text(
+              viewModel.weatherData?.currentWeather!.temperature.toString() ??
+                  "No data",
+              style: const TextStyle(color: AppTheme.dark),
+            ),
+            /* !viewModel.loading
+                ? AspectRatio(
+                    aspectRatio: 4 / 1,
+                    child: LineChartComponent(
+                      WeatherForecastModel: viewModel.weatherData,
+                    ))
+                : const CircularProgressIndicator(), */
+            WeatherForecastComponent()
+          ],
         ),
-      );
-    }
+      ),
+    );
   }
 }

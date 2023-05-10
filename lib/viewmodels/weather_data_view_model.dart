@@ -14,6 +14,7 @@ class WeatherDataViewModel extends ChangeNotifier {
 
   Future<void> getWeatherDataCurrentLocation() async {
     loading = true;
+
     try {
       final latLng = await location.currentLocation();
       final data = await api.fetchWeatherData(latLng);
@@ -24,10 +25,13 @@ class WeatherDataViewModel extends ChangeNotifier {
       throw Exception();
     }
     loading = false;
+    notifyListeners();
   }
 
   Future<void> getWeatherDataSearchedCity(String query) async {
     loading = true;
+    notifyListeners();
+
     try {
       final latLng = await location.searchLocation(query);
       final data = await api.fetchWeatherData(latLng);
@@ -37,5 +41,6 @@ class WeatherDataViewModel extends ChangeNotifier {
       throw Exception();
     }
     loading = false;
+    notifyListeners();
   }
 }
