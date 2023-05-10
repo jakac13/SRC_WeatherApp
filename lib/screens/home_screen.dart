@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       WeatherForecastModel: viewModel.weatherData,
                     ))
                 : const CircularProgressIndicator(), */
-            WeatherForecastComponent()
+            SizedBox(height: 250, child: WeatherForecastComponent())
           ],
         ),
       ),
