@@ -11,13 +11,14 @@ class SearchComponent extends StatefulWidget {
 }
 
 class _SearchComponentState extends State<SearchComponent> {
+  TextEditingController textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController textController = TextEditingController();
     return AnimSearchBar(
       autoFocus: true,
       helpText: "Search location...",
-      width: 400,
+      width: 300,
       textController: textController,
       animationDurationInMilli: 200,
       onSuffixTap: () {
@@ -30,5 +31,11 @@ class _SearchComponentState extends State<SearchComponent> {
             .getWeatherDataSearchedCity(p0);
       },
     );
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_src/components/current_weather_component.dart';
 import 'package:weather_src/components/line_chart_component.dart';
 import 'package:weather_src/components/search_component.dart';
 import 'package:weather_src/components/weather_forecast_component.dart';
@@ -35,25 +36,34 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor: AppTheme.bright,
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const SearchComponent(),
-            Text(
-              viewModel.weatherData?.currentWeather!.temperature.toString() ??
-                  "No data",
-              style: const TextStyle(color: AppTheme.dark),
-            ),
-            /* !viewModel.loading
-                ? AspectRatio(
-                    aspectRatio: 4 / 1,
-                    child: LineChartComponent(
-                      WeatherForecastModel: viewModel.weatherData,
-                    ))
-                : const CircularProgressIndicator(), */
-            SizedBox(height: 250, child: WeatherForecastComponent())
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 300, vertical: 20),
+          /* width: MediaQuery.of(context).size.width * 0.3, */
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              SearchComponent(),
+              CurrentWeatherComponent(),
+              SizedBox(
+                height: 20,
+              ),
+              /* Text(
+                viewModel.weatherData?.currentWeather!.temperature.toString() ??
+                    "No data",
+                style: const TextStyle(color: AppTheme.dark),
+              ), */
+              /* !viewModel.loading
+                  ? AspectRatio(
+                      aspectRatio: 4 / 1,
+                      child: LineChartComponent(
+                        WeatherForecastModel: viewModel.weatherData,
+                      ))
+                  : const CircularProgressIndicator(), */
+              SizedBox(child: WeatherForecastComponent())
+            ],
+          ),
         ),
       ),
     );
