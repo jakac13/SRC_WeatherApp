@@ -1,16 +1,17 @@
-# weather_src
+# SRC Simple Weather Application for Windows
 
-A new Flutter project.
+## Quick demonstration of the project
 
-## Getting Started
+This project is just a simple Flutter (Dart) application that displays basic data about current weather.
 
-This project is a starting point for a Flutter application.
+Half way into the project I realised that I could simply use OPENMETEO's Geocoding API, which would actually make things easier.
+Instead of Geocoding API, I used a package that returns longitude and latitude for the current searched location. After that I dynamically insert the longitude and latitude in the GET request... This made things a little harder, but I decided to keep it, since it works well.
 
-A few resources to get you started if this is your first Flutter project:
+## Some of the packages used in the project:
+- State Management - Provider package
+- Animated search bar - anim_search_bar
+- REST - http package
+- Current geo location -   geolocator: ^9.0.2
+- Location based on searched string - geocoder_buddy
+- Chart displaying - fl_chart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
