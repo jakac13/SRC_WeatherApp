@@ -24,7 +24,6 @@ class _LineChartComponentState extends State<LineChartComponent> {
       Duration difference = currentDateTime.difference(firstDateTime);
       hourList.add(difference.inHours.toDouble());
     }
-    print(hourList.toString());
     return hourList.sublist(0, 24);
   }
 

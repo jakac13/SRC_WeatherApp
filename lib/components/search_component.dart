@@ -17,8 +17,12 @@ class _SearchComponentState extends State<SearchComponent> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         AnimSearchBar(
+          boxShadow: false,
+          color: Colors.transparent,
           autoFocus: true,
           helpText: "Search location...",
           width: 400,
@@ -37,14 +41,20 @@ class _SearchComponentState extends State<SearchComponent> {
         const SizedBox(
           width: 20,
         ),
-        IconButton(
-            tooltip: "Refresh",
-            mouseCursor: SystemMouseCursors.click,
-            onPressed: () async {
+        Tooltip(
+          message: "Weather for current location",
+          child: InkWell(
+            borderRadius: BorderRadius.circular(50),
+            onTap: () async {
               Provider.of<WeatherDataViewModel>(context, listen: false)
                   .getWeatherDataCurrentLocation();
             },
-            icon: const Icon(Icons.refresh))
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: const Icon(Icons.location_on, color: AppTheme.blue),
+            ),
+          ),
+        ),
       ],
     );
   }

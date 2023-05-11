@@ -16,7 +16,6 @@ class WeatherDataViewModel extends ChangeNotifier {
   Future<void> getWeatherDataCurrentLocation() async {
     loading = true;
     notifyListeners();
-
     try {
       searchedCity = "";
       final latLng = await location.currentLocation();
