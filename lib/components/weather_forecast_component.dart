@@ -35,61 +35,67 @@ class _WeatherForecastComponentState extends State<WeatherForecastComponent> {
                 String formattedDate = DateFormat('EEEE').format(date);
                 return Container(
                   child: Card(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            weatherImageProvider
-                                .getWeatherImage(
-                                    dailyWeather.weathercode![index])
-                                .toString(),
-                          ),
-                          const SizedBox(
-                            width: 30,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '$formattedDate, ${dailyWeather.time![index]}',
-                                style: const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Icon(
-                                    Icons.thermostat,
-                                    size: 20,
-                                    color: Colors.blueAccent,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    '${dailyWeather.temperature2mMax![index]}  |',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: AppTheme.dark_light),
-                                  ),
-                                  Text(
-                                    '  ${dailyWeather.temperature2mMin![index]}',
-                                    style: const TextStyle(
-                                      color: AppTheme.dark_light,
-                                      fontWeight: FontWeight.bold,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              weatherImageProvider
+                                  .getWeatherImage(
+                                      dailyWeather.weathercode![index])
+                                  .toString(),
+                            ),
+                            const SizedBox(
+                              width: 30,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  formattedDate,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      Icons.thermostat,
+                                      size: 20,
+                                      color: Colors.blueAccent,
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      '${dailyWeather.temperature2mMax![index]}  |',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: AppTheme.dark_light),
+                                    ),
+                                    Text(
+                                      '  ${dailyWeather.temperature2mMin![index]}',
+                                      style: const TextStyle(
+                                        color: AppTheme.dark_light,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
