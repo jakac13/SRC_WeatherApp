@@ -44,9 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SearchComponent(),
-              CurrentWeatherComponent(),
-              SizedBox(
+              const SearchComponent(),
+              const CurrentWeatherComponent(),
+              const SizedBox(
                 height: 30,
               ),
               /* Text(
@@ -55,12 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: const TextStyle(color: AppTheme.dark),
               ), */
               !viewModel.loading
-                  ? AspectRatio(aspectRatio: 3 / 1, child: LineChartComponent())
+                  ? LineChartComponent()
                   : const CircularProgressIndicator(),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              SizedBox(
+              const SizedBox(
                 child: WeatherForecastComponent(),
               )
             ],

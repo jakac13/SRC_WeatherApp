@@ -41,41 +41,45 @@ class _LineChartComponentState extends State<LineChartComponent> {
     double tempMax = temperatureList.reduce(max);
     tempMin = tempMin.ceilToDouble();
     tempMax = tempMax.ceilToDouble();
-    return AspectRatio(
-      aspectRatio: 2,
-      child: LineChart(
-        LineChartData(
-          gridData: FlGridData(),
-          borderData: FlBorderData(
-            border: const Border(
-              bottom: BorderSide(width: 1, color: AppTheme.white_darker),
-              left: BorderSide(width: 1, color: AppTheme.white_darker),
-            ),
-          ),
-          minY: tempMin - 5,
-          maxY: tempMax + 5,
-          lineBarsData: [
-            LineChartBarData(
-                spots: List<FlSpot>.generate(
-                  24,
-                  (index) => FlSpot(
-                      hourList[index],
-                      viewModel.weatherData!.hourly!.temperature2m!
-                          .sublist(0, 24)[index]),
+    return Column(
+      children: [
+        AspectRatio(
+          aspectRatio: 2,
+          child: LineChart(
+            LineChartData(
+              gridData: FlGridData(),
+              borderData: FlBorderData(
+                border: const Border(
+                  bottom: BorderSide(width: 1, color: AppTheme.white_darker),
+                  left: BorderSide(width: 1, color: AppTheme.white_darker),
                 ),
-                isCurved: false,
-                barWidth: 3),
-          ],
-          titlesData: FlTitlesData(
-            rightTitles: AxisTitles(
-              sideTitles: SideTitles(showTitles: false),
-            ),
-            topTitles: AxisTitles(
-              sideTitles: SideTitles(showTitles: false),
+              ),
+              minY: tempMin - 5,
+              maxY: tempMax + 5,
+              lineBarsData: [
+                LineChartBarData(
+                    spots: List<FlSpot>.generate(
+                      24,
+                      (index) => FlSpot(
+                          hourList[index],
+                          viewModel.weatherData!.hourly!.temperature2m!
+                              .sublist(0, 24)[index]),
+                    ),
+                    isCurved: false,
+                    barWidth: 3),
+              ],
+              titlesData: FlTitlesData(
+                rightTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                topTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        )
+      ],
     );
   }
 }
