@@ -17,7 +17,8 @@ I could make the UI look better, but I honestly didn't have enough time.
 - Location based on searched string - geocoder_buddy
 - Chart displaying - fl_chart
 
-![image](https://github.com/jakac13/weather_src/assets/113991942/734a2205-b672-4c5f-b186-9f65ae0896af)
-![image](https://github.com/jakac13/weather_src/assets/113991942/143f3ebc-2146-4024-a980-0879d0235289)
+![image](https://github.com/jakac13/weather_src/assets/113991942/68d4452f-f8bd-45b5-a423-1f5213b4c5f4)
+![image](https://github.com/jakac13/weather_src/assets/113991942/d1a5a6c6-a108-4111-9aac-f8a458cd0c5a)
+
 
 
