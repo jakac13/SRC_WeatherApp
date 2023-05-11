@@ -18,7 +18,7 @@ class _SearchComponentState extends State<SearchComponent> {
     return AnimSearchBar(
       autoFocus: true,
       helpText: "Search location...",
-      width: 300,
+      width: MediaQuery.of(context).size.width,
       textController: textController,
       animationDurationInMilli: 200,
       onSuffixTap: () {

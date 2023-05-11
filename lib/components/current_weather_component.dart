@@ -30,8 +30,36 @@ class _CurrentWeatherComponentState extends State<CurrentWeatherComponent> {
     } else {
       return Container(
         width: double.infinity,
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            (viewModel.searchedCity == "")
+                ? const Text(
+                    "Weather for current location",
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  )
+                : Wrap(
+                    children: [
+                      const Text(
+                        "Weather for",
+                        style: TextStyle(
+                            fontSize: 32, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        viewModel.searchedCity,
+                        style: const TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueGrey),
+                      )
+                    ],
+                  ),
+            const SizedBox(
+              height: 10,
+            ),
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
@@ -41,22 +69,47 @@ class _CurrentWeatherComponentState extends State<CurrentWeatherComponent> {
                 child: Container(
                   color: AppTheme.blue,
                   padding: const EdgeInsets.all(20),
-                  child: Column(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        '${currentWeather.temperature.toString()} °C',
-                        style: const TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: AppTheme.white),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Currently",
+                            style: TextStyle(color: AppTheme.white_darker),
+                          ),
+                          Text(
+                            '${currentWeather.temperature.toString()} °C',
+                            style: const TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                                color: AppTheme.white),
+                          ),
+                        ],
                       ),
                       const SizedBox(
-                        height: 10,
+                        width: 20,
                       ),
-                      Text(formattedDate,
-                          style: const TextStyle(color: AppTheme.white)),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Wind speed",
+                            style: TextStyle(color: AppTheme.white_darker),
+                          ),
+                          Text(
+                            currentWeather.windspeed.toString(),
+                            style: const TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                                color: AppTheme.white),
+                          ),
+                        ],
+                      ),
                       const SizedBox(
-                        height: 20,
+                        width: 20,
                       ),
                       Image.asset(
                         weatherImageProvider

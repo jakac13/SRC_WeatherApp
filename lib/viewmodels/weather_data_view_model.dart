@@ -11,6 +11,7 @@ class WeatherDataViewModel extends ChangeNotifier {
   LocationService location = LocationService();
   WeatherForecastModel? weatherData;
   bool loading = false;
+  String searchedCity = "";
 
   Future<void> getWeatherDataCurrentLocation() async {
     loading = true;
@@ -21,7 +22,6 @@ class WeatherDataViewModel extends ChangeNotifier {
       weatherData = WeatherForecastModel.fromJson(data);
       notifyListeners();
     } catch (e) {
-      print(e);
       throw Exception();
     }
     loading = false;
@@ -29,6 +29,7 @@ class WeatherDataViewModel extends ChangeNotifier {
   }
 
   Future<void> getWeatherDataSearchedCity(String query) async {
+    searchedCity = query;
     loading = true;
     notifyListeners();
 
