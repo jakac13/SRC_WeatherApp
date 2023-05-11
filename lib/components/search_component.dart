@@ -1,6 +1,7 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_src/utils/app_styles.dart';
 import 'package:weather_src/viewmodels/weather_data_view_model.dart';
 
 class SearchComponent extends StatefulWidget {
@@ -15,21 +16,36 @@ class _SearchComponentState extends State<SearchComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimSearchBar(
-      autoFocus: true,
-      helpText: "Search location...",
-      width: MediaQuery.of(context).size.width,
-      textController: textController,
-      animationDurationInMilli: 200,
-      onSuffixTap: () {
-        setState(() {
-          textController.clear();
-        });
-      },
-      onSubmitted: (p0) async {
-        Provider.of<WeatherDataViewModel>(context, listen: false)
-            .getWeatherDataSearchedCity(p0);
-      },
+    return Row(
+      children: [
+        AnimSearchBar(
+          autoFocus: true,
+          helpText: "Search location...",
+          width: 400,
+          textController: textController,
+          animationDurationInMilli: 200,
+          onSuffixTap: () {
+            setState(() {
+              textController.clear();
+            });
+          },
+          onSubmitted: (p0) async {
+            Provider.of<WeatherDataViewModel>(context, listen: false)
+                .getWeatherDataSearchedCity(p0);
+          },
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+        IconButton(
+            tooltip: "Refresh",
+            mouseCursor: SystemMouseCursors.click,
+            onPressed: () async {
+              Provider.of<WeatherDataViewModel>(context, listen: false)
+                  .getWeatherDataCurrentLocation();
+            },
+            icon: const Icon(Icons.refresh))
+      ],
     );
   }
 

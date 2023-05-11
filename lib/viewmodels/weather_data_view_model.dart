@@ -15,8 +15,10 @@ class WeatherDataViewModel extends ChangeNotifier {
 
   Future<void> getWeatherDataCurrentLocation() async {
     loading = true;
+    notifyListeners();
 
     try {
+      searchedCity = "";
       final latLng = await location.currentLocation();
       final data = await api.fetchWeatherData(latLng);
       weatherData = WeatherForecastModel.fromJson(data);

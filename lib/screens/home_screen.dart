@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppTheme.bright,
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 200, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 150, vertical: 20),
           /* width: MediaQuery.of(context).size.width * 0.3, */
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: const TextStyle(color: AppTheme.dark),
               ), */
               !viewModel.loading
-                  ? LineChartComponent()
+                  ? const LineChartComponent()
                   : const CircularProgressIndicator(),
               const SizedBox(
                 height: 30,
