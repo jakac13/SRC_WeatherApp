@@ -46,7 +46,7 @@ class _CurrentWeatherComponentState extends State<CurrentWeatherComponent> {
                             fontSize: 32, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
-                        width: 5,
+                        width: 8,
                       ),
                       Text(
                         viewModel.searchedCity,

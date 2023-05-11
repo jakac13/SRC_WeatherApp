@@ -38,30 +38,31 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppTheme.bright,
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 300, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 200, vertical: 20),
           /* width: MediaQuery.of(context).size.width * 0.3, */
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
+            children: [
               SearchComponent(),
               CurrentWeatherComponent(),
               SizedBox(
-                height: 20,
+                height: 30,
               ),
               /* Text(
                 viewModel.weatherData?.currentWeather!.temperature.toString() ??
                     "No data",
                 style: const TextStyle(color: AppTheme.dark),
               ), */
-              /* !viewModel.loading
-                  ? AspectRatio(
-                      aspectRatio: 4 / 1,
-                      child: LineChartComponent(
-                        WeatherForecastModel: viewModel.weatherData,
-                      ))
-                  : const CircularProgressIndicator(), */
-              SizedBox(child: WeatherForecastComponent())
+              !viewModel.loading
+                  ? AspectRatio(aspectRatio: 3 / 1, child: LineChartComponent())
+                  : const CircularProgressIndicator(),
+              SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                child: WeatherForecastComponent(),
+              )
             ],
           ),
         ),
